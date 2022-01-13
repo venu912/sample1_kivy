@@ -1,0 +1,66 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+    FourthWindow:
+
+<MainWindow>:
+    name: "main"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Username: "
+
+            TextInput:
+                id: usern
+                multiline: False
+        
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Password: "
+              
+            TextInput:
+                id: passw
+                password: True
+                multiline: False
+
+        Button:
+            text: "Submit"
+            on_release:
+                app.root.current = "second" if passw.text == "venu" else "third"
+                root.manager.transition.direction = "left"
+
+
+<SecondWindow>:
+    name: "second"
+
+    Button:
+        text: "Password correct!! Press to continuee"
+        on_release:
+            app.root.current = "fourth"
+            root.manager.transition.direction = "left"
+
+<ThirdWindow>:
+    name: "third"
+
+    Button:
+        text: "Incorrect!! Goooo Back please provide valid details"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+
+<FourthWindow>:
+    name: "fourth"
+
+    Button:
+        text: "Welcome to the APP!!!"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
